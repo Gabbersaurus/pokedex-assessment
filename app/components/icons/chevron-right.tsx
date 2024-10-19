@@ -1,4 +1,4 @@
-export default function HamburgerIcon() {
+export default function ChevronRighttIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -12,7 +12,7 @@ export default function HamburgerIcon() {
       data-attribution="cc0-icons"
       viewBox="0 0 24 24"
     >
-      <path d="M2.5 18h19m-19-6h19m-19-6h19" />
+      <path d="m8.95 5.8 6.1 6.2-6.1 6.2" />
     </svg>
   );
 }

@@ -2,17 +2,16 @@
 
 import NavigationLink from "./navigation-link";
 import { useState } from "react";
-import { usePathname } from "next/navigation";
 import HamburgerIcon from "./icons/hamburger";
+import Link from "next/link";
 
 const pages = [
   { name: "Home", path: "/" },
-  { name: "Pokémon list", path: "/list" },
+  { name: "Pokémon list", path: "/pokemon" },
   { name: "Pokémon comparator", path: "/compare" },
 ];
 
 export default function Navigation() {
-  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleNavigation = () => {
@@ -21,13 +20,15 @@ export default function Navigation() {
 
   return (
     <>
-      <div className="bg-stone-800 text-white p-4 flex justify-between items-center">
-        <div className="text-lg font-bold">Pokédex</div>
+      <div className="z-10 bg-stone-800 text-white p-4 flex justify-between items-center shadow-xl">
+        <Link href="/" className="text-lg font-bold">
+          Pokédex
+        </Link>
 
         {/* Desktop navigation */}
         <nav className="hidden md:flex space-x-4">
           {pages.map((page) => (
-            <NavigationLink path={page.path} name={page.name} />
+            <NavigationLink key={page.path} path={page.path} name={page.name} />
           ))}
         </nav>
 
@@ -37,26 +38,26 @@ export default function Navigation() {
         </button>
       </div>
 
-      {/* Sidebar for Mobile */}
+      {/* Sidebar for mobile */}
       <div
-        className={`fixed min-h-screen z-30 w-64 bg-stone-800 text-white transform transition-transform duration-300 ease-in-out ${
+        className={`fixed min-h-screen z-30 w-64 bg-stone-800 shadow-xl text-white transform transition-transform duration-300 ease-in-out ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         } md:hidden`}
       >
         <nav className="mt-4 mx-4 flex flex-col space-y-2">
           {pages.map((page) => (
-            <NavigationLink path={page.path} name={page.name} />
+            <NavigationLink key={page.path} path={page.path} name={page.name} />
           ))}
         </nav>
       </div>
 
       {/* Overlay behind mobile sidebar */}
-      {isOpen && (
-        <div
-          className="fixed w-screen h-screen bg-stone-950 opacity-50 md:hidden"
-          onClick={() => setIsOpen(false)}
-        />
-      )}
+      <button
+        className={`fixed z-20 w-screen h-screen bg-stone-950 ${
+          isOpen ? "opacity-50" : "opacity-0 pointer-events-none"
+        } transition-opacity duration-300 ease-in-out md:hidden`}
+        onClick={() => setIsOpen(false)}
+      />
     </>
   );
 }
