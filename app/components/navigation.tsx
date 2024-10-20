@@ -33,7 +33,11 @@ export default function Navigation() {
         </nav>
 
         {/* Button to open the sidebar on mobile */}
-        <button onClick={toggleNavigation} className="text-white md:hidden">
+        <button
+          onClick={toggleNavigation}
+          className="text-white md:hidden"
+          aria-label="Toggle sidebar"
+        >
           <HamburgerIcon />
         </button>
       </div>
@@ -53,6 +57,7 @@ export default function Navigation() {
 
       {/* Overlay behind mobile sidebar */}
       <button
+        aria-label="Close sidebar"
         className={`fixed z-20 w-screen h-screen bg-stone-950 ${
           isOpen ? "opacity-50" : "opacity-0 pointer-events-none"
         } transition-opacity duration-300 ease-in-out md:hidden`}

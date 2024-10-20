@@ -14,6 +14,7 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
   return (
     <div className="w-64 mx-auto flex justify-between mt-4">
       <button
+        aria-label="Previous page"
         onClick={() => setPage(page - 1)}
         className={page <= 1 ? "pointer-events-none text-stone-300" : ""}
       >
@@ -23,6 +24,7 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
         page {page} of {Math.max(totalPages, 1)}
       </span>
       <button
+        aria-label="Next page"
         onClick={() => setPage(page + 1)}
         className={
           page >= totalPages ? "pointer-events-none text-stone-300" : ""

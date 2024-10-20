@@ -21,12 +21,12 @@ export default function PokemonInfo({ pokemon }: { pokemon: DetailedPokemon }) {
 
         <div className="bg-stone-400 flex rounded-lg overflow-hidden divide-x-2 divide-stone-300">
           <div
-            className={`grow basis-0 text-stone-100 text-center capitalize font-bold text-sm text-ellipsis overflow-hidden p-2`}
+            className={`grow basis-0 text-stone-100 text-center capitalize font-bold text-ellipsis overflow-hidden p-2 text-lg`}
           >
             {pokemon.weight}kg
           </div>
           <div
-            className={`grow basis-0 text-stone-100 text-center capitalize font-bold text-sm text-ellipsis overflow-hidden p-2`}
+            className={`grow basis-0 text-stone-100 text-center capitalize font-bold text-ellipsis overflow-hidden p-2 text-lg`}
           >
             {pokemon.height}cm
           </div>
@@ -38,7 +38,7 @@ export default function PokemonInfo({ pokemon }: { pokemon: DetailedPokemon }) {
               key={type}
               className={`${typeToBackgroundClass(
                 type
-              )} grow basis-0 text-white text-center capitalize font-bold text-sm text-ellipsis overflow-hidden p-2`}
+              )} grow basis-0 text-white text-center capitalize font-bold overflow-hidden p-2 text-lg`}
             >
               {PokemonType[type]}
             </div>
@@ -47,8 +47,8 @@ export default function PokemonInfo({ pokemon }: { pokemon: DetailedPokemon }) {
 
         <div className="overflow-x-auto">
           <table className="table-auto text-left w-full">
-            <thead>
-              <tr className="bg-stone-300">
+            <thead className="bg-stone-300">
+              <tr>
                 <th className="px-4 py-2">Stat</th>
                 <th className="px-4 py-2">Value</th>
               </tr>

@@ -52,7 +52,10 @@ export default async function Grid({
           key={pokemon.name}
           className="mb-2 group transition-transform ease-in-out hover:scale-105 duration-150"
         >
-          <Link href={`/pokemon/${pokemon.id}-${pokemon.name}`}>
+          <Link
+            href={`/pokemon/${pokemon.id}-${pokemon.name}`}
+            aria-label={`Open detail page of ${pokemon.name}`}
+          >
             <Image
               src={
                 pokemon.sprites.showdown ??
