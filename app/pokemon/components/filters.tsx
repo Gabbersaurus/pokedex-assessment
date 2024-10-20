@@ -108,6 +108,7 @@ export default function Filters() {
           </select>
         </div>
       </div>
+
       <div className="flex flex-row space-x-4">
         <div className="grow basis-0 overflow-hidden">
           <label
@@ -135,6 +136,7 @@ export default function Filters() {
             ))}
           </select>
         </div>
+
         <div className="grow basis-0 overflow-hidden">
           <label
             htmlFor="input-sort-direction"
