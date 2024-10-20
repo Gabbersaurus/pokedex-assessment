@@ -12,7 +12,7 @@ const defaultOptions: DefaultOptions = {
 };
 
 const client = new ApolloClient({
-  uri: "https://pokeapiclone.pascalbouwhuis.nl/v1/graphql",
+  uri: process.env.API_URL,
   cache: new InMemoryCache(),
   defaultOptions: defaultOptions,
 });
