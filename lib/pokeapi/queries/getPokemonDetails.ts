@@ -151,12 +151,16 @@ const transformPokemonDetailsQueryData = (
 };
 
 export default async function getPokemonDetails(id: number) {
-  const { data } = await client.query<GetPokemonDetailsQueryResult>({
+  const { data, errors } = await client.query<GetPokemonDetailsQueryResult>({
     query: GET_POKEMON_DETAILS_QUERY,
     variables: {
       id,
     },
   });
+
+  if (errors && errors.length > 0) {
+    throw new Error(errors[0].message);
+  }
 
   return transformPokemonDetailsQueryData(data);
 }

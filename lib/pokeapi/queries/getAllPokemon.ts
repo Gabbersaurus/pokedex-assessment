@@ -30,9 +30,13 @@ const transformAllPokemonQueryData = (
 };
 
 export default async function getAllPokemon() {
-  const { data } = await client.query<GetAllPokemonQueryResult>({
+  const { data, errors } = await client.query<GetAllPokemonQueryResult>({
     query: GET_ALL_POKEMON_QUERY,
   });
+
+  if (errors && errors.length > 0) {
+    throw new Error(errors[0].message);
+  }
 
   return transformAllPokemonQueryData(data);
 }

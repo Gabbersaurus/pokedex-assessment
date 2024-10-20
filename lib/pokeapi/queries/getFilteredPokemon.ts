@@ -144,7 +144,7 @@ export default async function getFilteredPokemon(
   orderDirection: OrderDirection,
   type: PokemonType | null
 ) {
-  const { data } = await client.query<GetFilteredPokemonQueryResult>({
+  const { data, errors } = await client.query<GetFilteredPokemonQueryResult>({
     query: GET_FILTERED_POKEMON_QUERY,
     variables: {
       limit,
@@ -158,6 +158,10 @@ export default async function getFilteredPokemon(
           ),
     },
   });
+
+  if (errors && errors.length > 0) {
+    throw new Error(errors[0].message);
+  }
 
   return transformFilteredPokemonQueryData(data);
 }

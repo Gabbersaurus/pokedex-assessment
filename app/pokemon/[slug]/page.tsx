@@ -1,8 +1,10 @@
 import getAllPokemon from "@/lib/pokeapi/queries/getAllPokemon";
 import getPokemonDetails from "@/lib/pokeapi/queries/getPokemonDetails";
+import type { DetailedPokemon } from "@/lib/pokeapi/queries/getPokemonDetails";
 import { notFound } from "next/navigation";
 import PokemonInfo from "./pokemonInfo";
 import PokemonFlavorTexts from "./pokemonFlavorTexts";
+import Error from "../../components/error";
 
 export async function generateStaticParams() {
   const pokemonList = await getAllPokemon();
@@ -18,7 +20,19 @@ export default async function Detail({ params }: { params: { slug: string } }) {
     notFound();
   }
 
-  const pokemon = await getPokemonDetails(id);
+  let pokemon: DetailedPokemon | null = null;
+
+  try {
+    pokemon = await getPokemonDetails(id);
+  } catch (error) {
+    console.error(error);
+    return (
+      <div className="grow flex justify-center items-center">
+        <Error text="Failed to load Pokémon" />
+      </div>
+    );
+  }
+
   if (!pokemon) {
     notFound();
   }
