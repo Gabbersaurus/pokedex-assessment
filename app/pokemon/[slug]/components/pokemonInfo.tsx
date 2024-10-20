@@ -10,7 +10,6 @@ export default function PokemonInfo({ pokemon }: { pokemon: DetailedPokemon }) {
   return (
     <div>
       <div className="bg-stone-200 rounded-lg shadow-md p-4 md:w-96 flex flex-col space-y-4">
-        <div></div>
         <Image
           src={pokemon.sprites.officialArtwork ?? "/placeholder.svg"}
           width={500}
@@ -23,12 +22,12 @@ export default function PokemonInfo({ pokemon }: { pokemon: DetailedPokemon }) {
           <div
             className={`grow basis-0 text-stone-100 text-center capitalize font-bold text-ellipsis overflow-hidden p-2 text-lg`}
           >
-            {pokemon.weight}kg
+            {parseFloat(pokemon.weight.toFixed(2))}kg
           </div>
           <div
             className={`grow basis-0 text-stone-100 text-center capitalize font-bold text-ellipsis overflow-hidden p-2 text-lg`}
           >
-            {pokemon.height}cm
+            {parseFloat(pokemon.height.toFixed(2))}cm
           </div>
         </div>
 
