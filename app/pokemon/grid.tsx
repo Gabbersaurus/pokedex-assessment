@@ -47,32 +47,24 @@ export default async function Grid({
           className="mb-2 group transition-transform ease-in-out hover:scale-105 duration-150"
         >
           <Link href={`/pokemon/${pokemon.id}-${pokemon.name}`}>
-            <div
+            <Image
+              src={
+                pokemon.sprites.showdown ??
+                pokemon.sprites.officialArtwork ??
+                "/placeholder.svg"
+              }
+              width={500}
+              height={500}
+              unoptimized={pokemon.sprites.showdown ? true : false}
+              alt={`${pokemon.name} ${
+                pokemon.sprites.showdown
+                  ? "animated sprite"
+                  : "official artwork"
+              }`}
               className={`${calculateBorderClasses(
                 pokemon
-              )} bg-stone-400 shadow-md group-hover:shadow-xl rounded-lg aspect-video mx-auto p-2 transition-shadow ease-in-out duration-150 flex items-center justify-center`}
-            >
-              {pokemon.sprites.showdown || pokemon.sprites.officialArtwork ? (
-                <Image
-                  src={
-                    pokemon.sprites.showdown ??
-                    pokemon.sprites.officialArtwork ??
-                    ""
-                  }
-                  width={500}
-                  height={500}
-                  unoptimized={pokemon.sprites.showdown ? true : false}
-                  alt={`${pokemon.name} ${
-                    pokemon.sprites.showdown
-                      ? "animated sprite"
-                      : "official artwork"
-                  }`}
-                  className="w-full h-full object-contain"
-                />
-              ) : (
-                <FileXIcon />
-              )}
-            </div>
+              )} bg-stone-400 shadow-md group-hover:shadow-xl rounded-lg aspect-video object-contain mx-auto p-2 transition-shadow ease-in-out duration-150 flex items-center justify-center`}
+            />
             <div className="w-full truncate text-center capitalize">
               {pokemon.name}
             </div>

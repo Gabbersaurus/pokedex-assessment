@@ -10,8 +10,9 @@ export default function PokemonInfo({ pokemon }: { pokemon: DetailedPokemon }) {
   return (
     <div>
       <div className="bg-stone-200 rounded-lg shadow-md p-4 md:w-96 flex flex-col space-y-4">
+        <div></div>
         <Image
-          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`}
+          src={pokemon.sprites.officialArtwork ?? "/placeholder.svg"}
           width={500}
           height={500}
           alt={`${pokemon.name} official artwork`}
