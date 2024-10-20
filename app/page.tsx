@@ -1,4 +1,5 @@
 import Link from "next/link";
+import ExternalLink from "./components/external-link";
 
 export default function Home() {
   return (
@@ -12,33 +13,32 @@ export default function Home() {
         <h2 className="text-2xl font-bold mb-4">About This Project</h2>
         <p>
           This assesment was made by{" "}
-          <a
-            href={"https://www.linkedin.com/in/pascal-bouwhuis/"}
-            target="_blank"
-            className="text-blue-600 hover:underline"
-          >
-            Pascal Bouwhuis
-          </a>{" "}
+          <ExternalLink
+            path="https://www.linkedin.com/in/pascal-bouwhuis/"
+            text="Pascal Bouwhuis"
+          />{" "}
           to demonstrate my frontend webdevelopment and API integration skills,
           following Blue Flamingos' assesment description. I used a self-hosted
-          version of the GraphQL PokeAPI to fetch and display the Pokémon.
+          version of the{" "}
+          <ExternalLink
+            path="https://pokeapi.co/docs/graphql"
+            text="GraphQL PokeAPI"
+          />{" "}
+          to fetch and display the Pokémon.
         </p>
         <p>
           Head over to the{" "}
-          <Link href={"/list"} className="text-blue-600 hover:underline">
-            /list
+          <Link href={"/pokemon"} className="text-blue-600 hover:underline">
+            /pokemon
           </Link>{" "}
           page to explore the Pokémon collection!
         </p>
         <p>
           The source code for this assesment can be found on{" "}
-          <a
-            href={"https://github.com/Gabbersaurus/pokedex-assessment"}
-            target="_blank"
-            className="text-blue-600 hover:underline"
-          >
-            Github
-          </a>
+          <ExternalLink
+            path="https://github.com/Gabbersaurus/pokedex-assessment"
+            text="Github"
+          />
           .
         </p>
       </div>
