@@ -8,6 +8,8 @@ export const GET_POKEMON_DETAILS_QUERY = gql`
     pokemon_v2_pokemon_by_pk(id: $id) {
       id
       name
+      weight
+      height
       pokemon_v2_pokemontypes {
         pokemon_v2_type {
           id
@@ -37,6 +39,8 @@ export type GetPokemonDetailsQueryResult = {
   pokemon_v2_pokemon_by_pk: {
     id: number;
     name: string;
+    weight: number; //hectogram
+    height: number; //decimeters
     pokemon_v2_pokemontypes: {
       pokemon_v2_type: {
         id: number;
@@ -65,6 +69,8 @@ export type GetPokemonDetailsQueryResult = {
 export type DetailedPokemon = {
   id: number;
   name: string;
+  weight: number; //kilogram
+  height: number; //centimeters
   types: PokemonType[];
   stats: {
     [key in keyof typeof PokemonStat]?: number;
@@ -85,6 +91,8 @@ const transformPokemonDetailsQueryData = (
   return {
     id: queryResult.pokemon_v2_pokemon_by_pk.id,
     name: queryResult.pokemon_v2_pokemon_by_pk.name,
+    weight: queryResult.pokemon_v2_pokemon_by_pk.weight * 0.1,
+    height: queryResult.pokemon_v2_pokemon_by_pk.height * 10,
     types: queryResult.pokemon_v2_pokemon_by_pk.pokemon_v2_pokemontypes.map(
       (type) => type.pokemon_v2_type.id
     ),

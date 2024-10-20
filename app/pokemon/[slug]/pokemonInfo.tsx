@@ -18,13 +18,26 @@ export default function PokemonInfo({ pokemon }: { pokemon: DetailedPokemon }) {
           className="bg-stone-400 shadow-md rounded-lg aspect-square object-contain w-full p-2"
         />
 
-        <div className="flex rounded-lg  overflow-hidden">
+        <div className="bg-stone-400 flex rounded-lg overflow-hidden divide-x-2 divide-stone-300">
+          <div
+            className={`grow basis-0 text-stone-100 text-center capitalize font-bold text-sm text-ellipsis overflow-hidden p-2`}
+          >
+            {pokemon.weight}kg
+          </div>
+          <div
+            className={`grow basis-0 text-stone-100 text-center capitalize font-bold text-sm text-ellipsis overflow-hidden p-2`}
+          >
+            {pokemon.height}cm
+          </div>
+        </div>
+
+        <div className="flex rounded-lg overflow-hidden">
           {pokemon.types.map((type) => (
             <div
               key={type}
               className={`${typeToBackgroundClass(
                 type
-              )} grow text-white text-center capitalize font-bold text-sm text-ellipsis overflow-hidden p-2`}
+              )} grow basis-0 text-white text-center capitalize font-bold text-sm text-ellipsis overflow-hidden p-2`}
             >
               {PokemonType[type]}
             </div>
