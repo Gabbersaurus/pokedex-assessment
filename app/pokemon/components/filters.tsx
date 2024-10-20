@@ -53,7 +53,32 @@ export default function Filters() {
       </div>
 
       <div className="flex flex-row space-x-4">
-        <div className="overflow-hidden">
+        <div className="grow basis-0 overflow-hidden">
+          <label
+            htmlFor="input-limit"
+            className="block mb-1 font-semibold overflow-hidden text-ellipsis text-nowrap"
+          >
+            Limit
+          </label>
+          <select
+            id="input-limit"
+            value={searchParams.limit}
+            onChange={(e) =>
+              setSearchParams({
+                ...searchParams,
+                limit: parseInt(e.target.value),
+                page: 1,
+              })
+            }
+            className="p-2 border border-stone-300 rounded-lg w-full font-sans overflow-hidden text-ellipsis"
+          >
+            <option value={30}>30</option>
+            <option value={60}>60</option>
+            <option value={90}>90</option>
+          </select>
+        </div>
+
+        <div className="grow basis-0 overflow-hidden">
           <label
             htmlFor="input-type"
             className="block mb-1 font-semibold overflow-hidden text-ellipsis text-nowrap"
@@ -82,11 +107,12 @@ export default function Filters() {
               ))}
           </select>
         </div>
-
-        <div className="overflow-hidden">
+      </div>
+      <div className="flex flex-row space-x-4">
+        <div className="grow basis-0 overflow-hidden">
           <label
             htmlFor="input-sort"
-            className="block mb-1 font-semibold overflow-hidden text-ellipsis"
+            className="block mb-1 font-semibold overflow-hidden text-ellipsis text-nowrap"
           >
             Sort
           </label>
@@ -109,8 +135,7 @@ export default function Filters() {
             ))}
           </select>
         </div>
-
-        <div className="overflow-hidden">
+        <div className="grow basis-0 overflow-hidden">
           <label
             htmlFor="input-sort-direction"
             className="block mb-1 font-semibold overflow-hidden text-ellipsis text-nowrap"
