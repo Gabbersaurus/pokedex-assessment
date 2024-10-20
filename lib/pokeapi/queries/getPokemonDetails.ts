@@ -31,6 +31,9 @@ export const GET_POKEMON_DETAILS_QUERY = gql`
           }
         }
       }
+      pokemon_v2_pokemonsprites {
+        sprites
+      }
     }
   }
 `;
@@ -60,6 +63,18 @@ export type GetPokemonDetailsQueryResult = {
         }[];
       };
     }[];
+    pokemon_v2_pokemonsprites?: {
+      sprites?: {
+        other?: {
+          showdown?: {
+            front_default?: string;
+          };
+          "official-artwork"?: {
+            front_default?: string;
+          };
+        };
+      };
+    }[];
   };
 };
 
@@ -79,6 +94,10 @@ export type DetailedPokemon = {
     game: string;
     text: string;
   }[];
+  sprites: {
+    showdown?: string;
+    officialArtwork?: string;
+  };
 };
 
 const transformPokemonDetailsQueryData = (
@@ -113,6 +132,21 @@ const transformPokemonDetailsQueryData = (
           text: game.pokemon_v2_version.pokemon_v2_pokemonspeciesflavortexts[0]
             .flavor_text,
         })),
+    sprites:
+      queryResult.pokemon_v2_pokemon_by_pk.pokemon_v2_pokemonsprites &&
+      queryResult.pokemon_v2_pokemon_by_pk.pokemon_v2_pokemonsprites?.length >
+        0 &&
+      queryResult.pokemon_v2_pokemon_by_pk.pokemon_v2_pokemonsprites[0]?.sprites
+        ?.other
+        ? {
+            showdown:
+              queryResult.pokemon_v2_pokemon_by_pk.pokemon_v2_pokemonsprites[0]
+                .sprites.other.showdown?.front_default,
+            officialArtwork:
+              queryResult.pokemon_v2_pokemon_by_pk.pokemon_v2_pokemonsprites[0]
+                .sprites.other["official-artwork"]?.front_default,
+          }
+        : {},
   };
 };
 

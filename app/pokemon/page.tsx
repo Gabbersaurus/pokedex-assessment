@@ -28,8 +28,14 @@ export default async function PokemonOverview({
       <h1 className="text-4xl font-bold mb-4">Pokémon List</h1>
 
       <Filters />
-      <Suspense fallback={<Spinner />}>
-        <div className="grow">
+      <div className="grow">
+        <Suspense
+          fallback={
+            <div className="w-full h-full flex justify-center items-center">
+              <Spinner />
+            </div>
+          }
+        >
           {filteredPokemon.pokemon.length < 1 ? (
             <div className="w-full h-full flex justify-center items-center">
               No Pokémon found
@@ -37,8 +43,8 @@ export default async function PokemonOverview({
           ) : (
             <Grid filteredPokemon={filteredPokemon} />
           )}
-        </div>
-      </Suspense>
+        </Suspense>
+      </div>
       <Pagination totalPages={totalPages} />
     </div>
   );

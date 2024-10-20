@@ -33,10 +33,16 @@ export const GET_FILTERED_POKEMON_QUERY = gql`
     ) {
       id
       name
+      pokemon_v2_pokemonsprites {
+        sprites
+      }
       pokemon_v2_pokemontypes {
         pokemon_v2_type {
           id
         }
+      }
+      pokemon_v2_pokemonsprites {
+        sprites
       }
     }
     pokemon_v2_pokemon_aggregate(
@@ -61,6 +67,18 @@ export type GetFilteredPokemonQueryResult = {
         id: number;
       };
     }[];
+    pokemon_v2_pokemonsprites?: {
+      sprites?: {
+        other?: {
+          showdown?: {
+            front_default?: string;
+          };
+          "official-artwork"?: {
+            front_default?: string;
+          };
+        };
+      };
+    }[];
   }[];
   pokemon_v2_pokemon_aggregate: {
     aggregate: {
@@ -74,6 +92,10 @@ export type FilteredPokemon = {
     id: number;
     name: string;
     types: PokemonType[];
+    sprites: {
+      showdown?: string;
+      officialArtwork?: string;
+    };
   }[];
   total: number;
 };
@@ -95,6 +117,20 @@ const transformFilteredPokemonQueryData = (
       types: pokemon.pokemon_v2_pokemontypes.map(
         (type) => type.pokemon_v2_type.id
       ),
+      sprites:
+        pokemon.pokemon_v2_pokemonsprites &&
+        pokemon.pokemon_v2_pokemonsprites?.length > 0 &&
+        pokemon.pokemon_v2_pokemonsprites[0]?.sprites?.other
+          ? {
+              showdown:
+                pokemon.pokemon_v2_pokemonsprites[0].sprites.other.showdown
+                  ?.front_default,
+              officialArtwork:
+                pokemon.pokemon_v2_pokemonsprites[0].sprites.other[
+                  "official-artwork"
+                ]?.front_default,
+            }
+          : {},
     })),
     total: queryResult.pokemon_v2_pokemon_aggregate.aggregate.count,
   };

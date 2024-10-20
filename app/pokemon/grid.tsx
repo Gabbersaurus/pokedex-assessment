@@ -2,6 +2,7 @@ import { PokemonType } from "@/lib/pokeapi/pokemonType";
 import type { FilteredPokemon } from "@/lib/pokeapi/queries/getFilteredPokemon";
 import Image from "next/image";
 import Link from "next/link";
+import FileXIcon from "../components/icons/file-x";
 
 function calculateBorderClasses(pokemon: FilteredPokemon["pokemon"][number]) {
   let output = "border-4";
@@ -46,16 +47,32 @@ export default async function Grid({
           className="mb-2 group transition-transform ease-in-out hover:scale-105 duration-150"
         >
           <Link href={`/pokemon/${pokemon.id}-${pokemon.name}`}>
-            <Image
-              src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/${pokemon.id}.gif`}
-              width={500}
-              height={500}
-              unoptimized
-              alt={`${pokemon.name} animated sprite`}
+            <div
               className={`${calculateBorderClasses(
                 pokemon
-              )} bg-stone-400 shadow-md group-hover:shadow-xl rounded-lg aspect-video object-contain mx-auto p-2 transition-shadow ease-in-out duration-150`}
-            />
+              )} bg-stone-400 shadow-md group-hover:shadow-xl rounded-lg aspect-video mx-auto p-2 transition-shadow ease-in-out duration-150 flex items-center justify-center`}
+            >
+              {pokemon.sprites.showdown || pokemon.sprites.officialArtwork ? (
+                <Image
+                  src={
+                    pokemon.sprites.showdown ??
+                    pokemon.sprites.officialArtwork ??
+                    ""
+                  }
+                  width={500}
+                  height={500}
+                  unoptimized={pokemon.sprites.showdown ? true : false}
+                  alt={`${pokemon.name} ${
+                    pokemon.sprites.showdown
+                      ? "animated sprite"
+                      : "official artwork"
+                  }`}
+                  className="w-full h-full object-contain"
+                />
+              ) : (
+                <FileXIcon />
+              )}
+            </div>
             <div className="w-full truncate text-center capitalize">
               {pokemon.name}
             </div>
