@@ -20,8 +20,9 @@ export default function Navigation() {
 
   return (
     <>
+      {/* Top bar */}
       <div className="z-10 bg-stone-800 text-white p-4 flex justify-between items-center shadow-xl">
-        <Link href="/" className="text-lg font-bold">
+        <Link href="/" className="text-4xl font-bold">
           Pokédex
         </Link>
 

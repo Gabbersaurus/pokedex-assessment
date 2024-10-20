@@ -2,7 +2,7 @@ import gql from "graphql-tag";
 import client from "../client";
 
 export const GET_FILTERED_POKEMON_QUERY = gql`
-  query GetPokemon($limit: Int!, $offset: Int!, $searchRegex: String!) {
+  query GetFilteredPokemon($limit: Int!, $offset: Int!, $searchRegex: String!) {
     pokemon_v2_pokemon(
       limit: $limit
       offset: $offset
@@ -32,10 +32,7 @@ export type GetFilteredPokemonQueryResult = {
 };
 
 type TransformedResult = {
-  pokemon: {
-    id: number;
-    name: string;
-  }[];
+  pokemon: GetFilteredPokemonQueryResult["pokemon_v2_pokemon"];
   total: number;
 };
 

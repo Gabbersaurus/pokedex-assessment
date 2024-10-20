@@ -18,11 +18,11 @@ export default async function List({
 
   return (
     <div className="w-full flex flex-col">
-      <h1 className="text-2xl mb-4">Pokémon List</h1>
+      <h1 className="text-4xl font-bold mb-4">Pokémon List</h1>
 
       <Filters />
       <Suspense fallback={<Spinner />}>
-        <div className="flex-grow">
+        <div className="grow">
           {filteredPokemon.pokemon.length < 1 ? (
             <div className="w-full h-full flex justify-center items-center">
               No Pokémon found
@@ -34,13 +34,13 @@ export default async function List({
                   key={pokemon.name}
                   className="mb-2 group transition-transform ease-in-out hover:scale-105 duration-150"
                 >
-                  <Link href={`/pokemon/${pokemon.name}`}>
+                  <Link href={`/pokemon/${pokemon.id}-${pokemon.name}`}>
                     <Image
                       src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/${pokemon.id}.gif`}
                       width={500}
                       height={500}
                       unoptimized
-                      alt={`Picture of ${pokemon.name}`}
+                      alt={`${pokemon.name} animated sprite`}
                       className="bg-stone-400 shadow-md group-hover:shadow-xl rounded-lg aspect-video object-contain mx-auto p-2 transition-shadow ease-in-out duration-150"
                     />
                     <div className="w-full truncate text-center capitalize">
