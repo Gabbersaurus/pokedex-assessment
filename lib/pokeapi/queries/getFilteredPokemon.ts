@@ -33,6 +33,11 @@ export const GET_FILTERED_POKEMON_QUERY = gql`
     ) {
       id
       name
+      pokemon_v2_pokemontypes {
+        pokemon_v2_type {
+          id
+        }
+      }
     }
     pokemon_v2_pokemon_aggregate(
       where: {
@@ -51,6 +56,11 @@ export type GetFilteredPokemonQueryResult = {
   pokemon_v2_pokemon: {
     id: number;
     name: string;
+    pokemon_v2_pokemontypes: {
+      pokemon_v2_type: {
+        id: number;
+      };
+    }[];
   }[];
   pokemon_v2_pokemon_aggregate: {
     aggregate: {
@@ -59,14 +69,18 @@ export type GetFilteredPokemonQueryResult = {
   };
 };
 
-type TransformedResult = {
-  pokemon: GetFilteredPokemonQueryResult["pokemon_v2_pokemon"];
+export type FilteredPokemon = {
+  pokemon: {
+    id: number;
+    name: string;
+    types: PokemonType[];
+  }[];
   total: number;
 };
 
 const transformFilteredPokemonQueryData = (
   queryResult?: GetFilteredPokemonQueryResult
-): TransformedResult => {
+): FilteredPokemon => {
   if (!queryResult) {
     return {
       pokemon: [],
@@ -75,7 +89,13 @@ const transformFilteredPokemonQueryData = (
   }
 
   return {
-    pokemon: queryResult.pokemon_v2_pokemon,
+    pokemon: queryResult.pokemon_v2_pokemon.map((pokemon) => ({
+      id: pokemon.id,
+      name: pokemon.name,
+      types: pokemon.pokemon_v2_pokemontypes.map(
+        (type) => type.pokemon_v2_type.id
+      ),
+    })),
     total: queryResult.pokemon_v2_pokemon_aggregate.aggregate.count,
   };
 };

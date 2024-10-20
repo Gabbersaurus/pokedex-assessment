@@ -35,7 +35,7 @@ const config: Config = {
   },
   safelist: [
     {
-      pattern: /(bg|text|border)-pokemontype-.*/,
+      pattern: /(bg|text|border(-[xytblr])?)-pokemontype-.*/,
     },
   ],
 };
