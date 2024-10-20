@@ -106,9 +106,9 @@ export type FilteredPokemon = {
   total: number;
 };
 
-const transformFilteredPokemonQueryData = (
+function transformFilteredPokemonQueryData(
   queryResult?: GetFilteredPokemonQueryResult
-): FilteredPokemon => {
+): FilteredPokemon {
   if (!queryResult) {
     return {
       pokemon: [],
@@ -140,7 +140,7 @@ const transformFilteredPokemonQueryData = (
     })),
     total: queryResult.pokemon_v2_pokemon_aggregate.aggregate.count,
   };
-};
+}
 
 /**
  * Queries the GraphQL API, checks for errors and properly throws them, and transforms all the data.

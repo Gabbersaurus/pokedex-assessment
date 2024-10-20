@@ -103,9 +103,20 @@ export type DetailedPokemon = {
   };
 };
 
-const transformPokemonDetailsQueryData = (
+/**
+ * Replaces whitespaces that touch other non-whitespace characters (so in between words) with spaces.
+ * Other whitespaces are removed completely.
+ */
+function removeWhitespaces(flavorText: string) {
+  let output = flavorText.replace(/(?<=\S)\n|\f(?=\S)/g, " ");
+  output = output.replace(/\s*\n|\f\s*/g, "");
+
+  return output;
+}
+
+function transformPokemonDetailsQueryData(
   queryResult?: GetPokemonDetailsQueryResult
-): DetailedPokemon | null => {
+): DetailedPokemon | null {
   if (!queryResult) {
     return null;
   }
@@ -132,8 +143,10 @@ const transformPokemonDetailsQueryData = (
         )
         .map((game) => ({
           game: game.pokemon_v2_version.name,
-          text: game.pokemon_v2_version.pokemon_v2_pokemonspeciesflavortexts[0]
-            .flavor_text,
+          text: removeWhitespaces(
+            game.pokemon_v2_version.pokemon_v2_pokemonspeciesflavortexts[0]
+              .flavor_text
+          ),
         })),
     sprites:
       queryResult.pokemon_v2_pokemon_by_pk.pokemon_v2_pokemonsprites &&
@@ -151,7 +164,7 @@ const transformPokemonDetailsQueryData = (
           }
         : {},
   };
-};
+}
 
 /**
  * Queries the GraphQL API, checks for errors and properly throws them, and transforms all the data.

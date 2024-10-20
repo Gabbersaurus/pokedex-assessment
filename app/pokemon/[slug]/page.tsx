@@ -5,6 +5,14 @@ import { notFound } from "next/navigation";
 import PokemonInfo from "./components/pokemonInfo";
 import PokemonFlavorTexts from "./components/pokemonFlavorTexts";
 import Error from "../../components/error";
+import type { Metadata } from "next";
+import ucFirst from "@/lib/ucFirst";
+
+type Props = { params: { slug: string } };
+
+function getIdFromSlug(slug: string) {
+  return parseInt(slug.split("-")[0], 10);
+}
 
 export async function generateStaticParams() {
   const pokemonList = await getAllPokemon();
@@ -14,8 +22,26 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function Detail({ params }: { params: { slug: string } }) {
-  const id = parseInt(params.slug.split("-")[0], 10);
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const id = getIdFromSlug(params.slug);
+  const pokemon = await getPokemonDetails(id);
+
+  if (!pokemon) {
+    return { title: "Unknown Pokémon" };
+  }
+
+  return {
+    title: ucFirst(pokemon.name),
+    description:
+      pokemon.flavorText.length > 0 ? pokemon.flavorText[0].text : undefined,
+    openGraph: {
+      images: Object.values(pokemon.sprites).filter((image) => image),
+    },
+  };
+}
+
+export default async function Detail({ params }: Props) {
+  const id = getIdFromSlug(params.slug);
   if (isNaN(id)) {
     notFound();
   }

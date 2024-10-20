@@ -1,16 +1,5 @@
 import type { DetailedPokemon } from "@/lib/pokeapi/queries/getPokemonDetails";
 
-/**
- * Replaces whitespaces that touch other non-whitespace characters (so in between words) with spaces.
- * Other whitespaces are removed completely.
- */
-function removeWhitespaces(flavorText: string) {
-  let output = flavorText.replace(/(?<=\S)\n|\f(?=\S)/g, " ");
-  output = output.replace(/\s*\n|\f\s*/g, "");
-
-  return output;
-}
-
 export default function PokemonFlavorTexts({
   pokemon,
 }: {
@@ -26,7 +15,7 @@ export default function PokemonFlavorTexts({
           {pokemon.flavorText.map((flavor) => (
             <li key={flavor.game} className="pt-2 first:pt-0 last:pt-0">
               <strong className="block capitalize">{flavor.game}</strong>
-              <span>{removeWhitespaces(flavor.text)}</span>
+              <span>{flavor.text}</span>
             </li>
           ))}
         </ul>

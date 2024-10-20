@@ -22,15 +22,15 @@ export type GetAllPokemonQueryResult = {
 
 type TransformedResult = GetAllPokemonQueryResult["pokemon_v2_pokemon"];
 
-const transformAllPokemonQueryData = (
+function transformAllPokemonQueryData(
   queryResult?: GetAllPokemonQueryResult
-): TransformedResult => {
+): TransformedResult {
   if (!queryResult) {
     return [];
   }
 
   return queryResult.pokemon_v2_pokemon;
-};
+}
 
 /**
  * Queries the GraphQL API, checks for errors and properly throws them, and transforms all the data.
