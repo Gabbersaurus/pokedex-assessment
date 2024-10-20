@@ -8,7 +8,6 @@ import Link from "next/link";
 const pages = [
   { name: "Home", path: "/" },
   { name: "Pokémon list", path: "/pokemon" },
-  { name: "Pokémon comparator", path: "/compare" },
 ];
 
 export default function Navigation() {
