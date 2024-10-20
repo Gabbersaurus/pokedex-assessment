@@ -1,9 +1,9 @@
 "use client";
 
 import { useQueryState } from "nuqs";
-import ChevronLeftIcon from "../components/icons/chevron-left";
-import ChevronRightIcon from "../components/icons/chevron-right";
-import { searchParamsParsers } from "./searchParams";
+import ChevronLeftIcon from "../../components/icons/chevron-left";
+import ChevronRightIcon from "../../components/icons/chevron-right";
+import { searchParamsParsers } from "../searchParams";
 
 export default function Pagination({ totalPages }: { totalPages: number }) {
   const [page, setPage] = useQueryState("page", {

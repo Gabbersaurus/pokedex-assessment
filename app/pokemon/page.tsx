@@ -2,9 +2,9 @@ import getFilteredPokemon, {
   FilteredPokemon,
 } from "@/lib/pokeapi/queries/getFilteredPokemon";
 import Spinner from "../components/spinner";
-import Filters from "./filters";
-import Grid from "./grid";
-import Pagination from "./pagination";
+import Filters from "./components/filters";
+import Grid from "./components/grid";
+import Pagination from "./components/pagination";
 import { searchParamsCache } from "./searchParams";
 import { Suspense } from "react";
 import Error from "../components/error";
@@ -42,25 +42,17 @@ export default async function PokemonOverview({
 
       <Filters />
       <div className="grow">
-        <Suspense
-          fallback={
-            <div className="w-full h-full flex justify-center items-center">
-              <Spinner />
-            </div>
-          }
-        >
-          {displayError ? (
-            <div className="w-full h-full flex justify-center items-center">
-              <Error text="Something went wrong while fetching Pokémon. Please try again later." />
-            </div>
-          ) : filteredPokemon.pokemon.length < 1 ? (
-            <div className="w-full h-full flex justify-center items-center">
-              No Pokémon found
-            </div>
-          ) : (
-            <Grid filteredPokemon={filteredPokemon} />
-          )}
-        </Suspense>
+        {displayError ? (
+          <div className="w-full h-full flex justify-center items-center">
+            <Error text="Something went wrong while fetching Pokémon. Please try again later." />
+          </div>
+        ) : filteredPokemon.pokemon.length < 1 ? (
+          <div className="w-full h-full flex justify-center items-center">
+            No Pokémon found
+          </div>
+        ) : (
+          <Grid filteredPokemon={filteredPokemon} />
+        )}
       </div>
       <Pagination totalPages={totalPages} />
     </div>

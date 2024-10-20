@@ -5,7 +5,7 @@ import {
   searchParamsParsers,
   stringToOrderBy,
   stringToOrderDirection,
-} from "./searchParams";
+} from "../searchParams";
 import { useEffect, useState } from "react";
 import {
   OrderBy,
