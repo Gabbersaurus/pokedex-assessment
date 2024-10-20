@@ -12,13 +12,13 @@ export default function Home() {
       <div className="p-4 bg-white rounded-lg shadow-md mt-10 max-w-xl">
         <h2 className="text-2xl font-bold mb-4">About This Project</h2>
         <p>
-          This assesment was made by{" "}
+          This assessment was made by{" "}
           <ExternalLink
             path="https://www.linkedin.com/in/pascal-bouwhuis/"
             text="Pascal Bouwhuis"
           />{" "}
           to demonstrate my frontend webdevelopment and API integration skills,
-          following Blue Flamingos&apos; assesment description. I used a
+          following Blue Flamingos&apos; assessment description. I used a
           self-hosted version of the{" "}
           <ExternalLink
             path="https://pokeapi.co/docs/graphql"
@@ -34,7 +34,7 @@ export default function Home() {
           page to explore the Pokémon collection!
         </p>
         <p>
-          The source code for this assesment can be found on{" "}
+          The source code for this assessment can be found on{" "}
           <ExternalLink
             path="https://github.com/Gabbersaurus/pokedex-assessment"
             text="Github"
