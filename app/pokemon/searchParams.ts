@@ -1,4 +1,3 @@
-import { PokemonType } from "@/lib/pokeapi/pokemonType";
 import {
   OrderBy,
   OrderDirection,

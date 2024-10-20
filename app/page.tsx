@@ -18,8 +18,8 @@ export default function Home() {
             text="Pascal Bouwhuis"
           />{" "}
           to demonstrate my frontend webdevelopment and API integration skills,
-          following Blue Flamingos' assesment description. I used a self-hosted
-          version of the{" "}
+          following Blue Flamingos&apos; assesment description. I used a
+          self-hosted version of the{" "}
           <ExternalLink
             path="https://pokeapi.co/docs/graphql"
             text="GraphQL PokeAPI"

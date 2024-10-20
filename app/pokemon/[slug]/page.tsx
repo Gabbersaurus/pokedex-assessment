@@ -5,8 +5,6 @@ import { notFound } from "next/navigation";
 import PokemonInfo from "./components/pokemonInfo";
 import PokemonFlavorTexts from "./components/pokemonFlavorTexts";
 import Error from "../../components/error";
-import Spinner from "@/app/components/spinner";
-import { Suspense } from "react";
 
 export async function generateStaticParams() {
   const pokemonList = await getAllPokemon();

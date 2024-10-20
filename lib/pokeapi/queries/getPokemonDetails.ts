@@ -1,6 +1,6 @@
 import gql from "graphql-tag";
 import client from "../client";
-import { PokemonType } from "../pokemonType";
+import type { PokemonType } from "../pokemonType";
 import { PokemonStat } from "../pokemonStat";
 
 export const GET_POKEMON_DETAILS_QUERY = gql`

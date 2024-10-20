@@ -1,12 +1,9 @@
-import getFilteredPokemon, {
-  FilteredPokemon,
-} from "@/lib/pokeapi/queries/getFilteredPokemon";
-import Spinner from "../components/spinner";
+import getFilteredPokemon from "@/lib/pokeapi/queries/getFilteredPokemon";
+import type { FilteredPokemon } from "@/lib/pokeapi/queries/getFilteredPokemon";
 import Filters from "./components/filters";
 import Grid from "./components/grid";
 import Pagination from "./components/pagination";
 import { searchParamsCache } from "./searchParams";
-import { Suspense } from "react";
 import Error from "../components/error";
 
 export default async function PokemonOverview({

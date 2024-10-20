@@ -2,7 +2,6 @@ import { PokemonType } from "@/lib/pokeapi/pokemonType";
 import type { FilteredPokemon } from "@/lib/pokeapi/queries/getFilteredPokemon";
 import Image from "next/image";
 import Link from "next/link";
-import FileXIcon from "../components/icons/file-x";
 
 function calculateBorderClasses(pokemon: FilteredPokemon["pokemon"][number]) {
   let output = "border-4";
