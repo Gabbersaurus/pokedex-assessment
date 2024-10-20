@@ -12,8 +12,16 @@ export default async function List({
 }: {
   searchParams: Record<string, string | string[] | undefined>;
 }) {
-  const { page, limit, search } = searchParamsCache.parse(searchParams);
-  const filteredPokemon = await getFilteredPokemon(limit, page, search);
+  const { page, limit, search, orderBy, orderDirection, type } =
+    searchParamsCache.parse(searchParams);
+  const filteredPokemon = await getFilteredPokemon(
+    limit,
+    page,
+    search,
+    orderBy,
+    orderDirection,
+    type
+  );
   const totalPages = Math.ceil(filteredPokemon.total / limit);
 
   return (

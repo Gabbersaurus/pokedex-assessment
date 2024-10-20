@@ -20,7 +20,7 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
         <ChevronLeftIcon />
       </button>
       <span>
-        page {page} of {totalPages}
+        page {page} of {Math.max(totalPages, 1)}
       </span>
       <button
         onClick={() => setPage(page + 1)}
