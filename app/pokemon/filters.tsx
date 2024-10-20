@@ -67,6 +67,7 @@ export default function Filters() {
               setSearchParams({
                 ...searchParams,
                 type: e.target.value ? parseInt(e.target.value) : null,
+                page: 1,
               })
             }
             className="p-2 border border-stone-300 rounded-lg w-full font-sans overflow-hidden text-ellipsis"
@@ -96,6 +97,7 @@ export default function Filters() {
               setSearchParams({
                 ...searchParams,
                 orderBy: stringToOrderBy(e.target.value),
+                page: 1,
               })
             }
             className="p-2 border border-stone-300 rounded-lg w-full font-sans overflow-hidden text-ellipsis"
@@ -122,6 +124,7 @@ export default function Filters() {
               setSearchParams({
                 ...searchParams,
                 orderDirection: stringToOrderDirection(e.target.value),
+                page: 1,
               })
             }
             className="p-2 border border-stone-300 rounded-lg w-full font-sans overflow-hidden text-ellipsis"
