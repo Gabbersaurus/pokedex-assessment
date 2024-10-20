@@ -3,6 +3,13 @@ import type { FilteredPokemon } from "@/lib/pokeapi/queries/getFilteredPokemon";
 import Image from "next/image";
 import Link from "next/link";
 
+/**
+ * Generates all border classes for a specific pokemon.
+ * A pokémon with one type will have the entire border in that type color.
+ * A pokémon with two types will have the first type's color on the top and bottom, the other type's color on the left and right.
+ * A pokémon with three types will have the first type's color on the top and bottom, the second type's color on the left and the third type's color on the right.
+ * A pokémon with three types will have the first type's color on the top, the second type's color on the left, the third type's color on the right and the fourth type's color on the bottom.
+ */
 function calculateBorderClasses(pokemon: FilteredPokemon["pokemon"][number]) {
   let output = "border-4";
 

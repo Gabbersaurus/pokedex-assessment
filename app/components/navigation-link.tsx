@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-export default function NavLink({
+export default function NavigationLink({
   path,
   name,
 }: {

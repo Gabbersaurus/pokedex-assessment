@@ -10,6 +10,9 @@ export const GET_ALL_POKEMON_QUERY = gql`
   }
 `;
 
+/**
+ * Raw query result.
+ */
 export type GetAllPokemonQueryResult = {
   pokemon_v2_pokemon: {
     id: number;
@@ -29,6 +32,9 @@ const transformAllPokemonQueryData = (
   return queryResult.pokemon_v2_pokemon;
 };
 
+/**
+ * Queries the GraphQL API, checks for errors and properly throws them, and transforms all the data.
+ */
 export default async function getAllPokemon() {
   const { data, errors } = await client.query<GetAllPokemonQueryResult>({
     query: GET_ALL_POKEMON_QUERY,

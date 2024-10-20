@@ -58,6 +58,9 @@ export const GET_FILTERED_POKEMON_QUERY = gql`
   }
 `;
 
+/**
+ * Raw query result.
+ */
 export type GetFilteredPokemonQueryResult = {
   pokemon_v2_pokemon: {
     id: number;
@@ -87,6 +90,9 @@ export type GetFilteredPokemonQueryResult = {
   };
 };
 
+/**
+ * Transformed result.
+ */
 export type FilteredPokemon = {
   pokemon: {
     id: number;
@@ -136,6 +142,9 @@ const transformFilteredPokemonQueryData = (
   };
 };
 
+/**
+ * Queries the GraphQL API, checks for errors and properly throws them, and transforms all the data.
+ */
 export default async function getFilteredPokemon(
   limit: number,
   page: number,

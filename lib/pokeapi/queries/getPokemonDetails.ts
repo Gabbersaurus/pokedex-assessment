@@ -38,6 +38,9 @@ export const GET_POKEMON_DETAILS_QUERY = gql`
   }
 `;
 
+/**
+ * Raw query result.
+ */
 export type GetPokemonDetailsQueryResult = {
   pokemon_v2_pokemon_by_pk: {
     id: number;
@@ -79,7 +82,7 @@ export type GetPokemonDetailsQueryResult = {
 };
 
 /**
- * Transformed result
+ * Transformed result.
  */
 export type DetailedPokemon = {
   id: number;
@@ -150,6 +153,9 @@ const transformPokemonDetailsQueryData = (
   };
 };
 
+/**
+ * Queries the GraphQL API, checks for errors and properly throws them, and transforms all the data.
+ */
 export default async function getPokemonDetails(id: number) {
   const { data, errors } = await client.query<GetPokemonDetailsQueryResult>({
     query: GET_POKEMON_DETAILS_QUERY,
