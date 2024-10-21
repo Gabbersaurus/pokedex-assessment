@@ -9,7 +9,7 @@ export default function Home() {
         <span className="block text-2xl">for Blue Flamingos</span>
       </h1>
 
-      <div className="p-4 bg-white rounded-lg shadow-md mt-10 max-w-xl">
+      <div className="p-4 bg-white rounded-lg shadow-lg mt-10 max-w-xl">
         <h2 className="text-2xl font-bold mb-4">About This Project</h2>
         <p>
           This assessment was made by{" "}
