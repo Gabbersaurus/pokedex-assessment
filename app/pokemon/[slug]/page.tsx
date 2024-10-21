@@ -24,20 +24,24 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const id = getIdFromSlug(params.slug);
-  const pokemon = await getPokemonDetails(id);
+  const output: Metadata = { title: "Unknown Pokémon" };
 
-  if (!pokemon) {
-    return { title: "Unknown Pokémon" };
+  try {
+    const pokemon = await getPokemonDetails(id);
+    if (pokemon) {
+      output.title = ucFirst(pokemon.name);
+      output.openGraph = {
+        images: Object.values(pokemon.sprites).filter((image) => image),
+      };
+      if (pokemon.flavorText.length > 0) {
+        output.description = pokemon.flavorText[0].text;
+      }
+    }
+  } catch (error) {
+    console.error(error);
   }
 
-  return {
-    title: ucFirst(pokemon.name),
-    description:
-      pokemon.flavorText.length > 0 ? pokemon.flavorText[0].text : undefined,
-    openGraph: {
-      images: Object.values(pokemon.sprites).filter((image) => image),
-    },
-  };
+  return output;
 }
 
 export default async function Detail({ params }: Props) {
